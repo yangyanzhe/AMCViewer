@@ -307,7 +307,7 @@ public:
 		string tok;
 		if (!from.get_token(tok)) {
 			from.restore_token_list();
-			return false;
+			return NULL;
 		}
 		if (tok.size() == 2) {
 			int ind = 0;
@@ -588,7 +588,7 @@ public:
 		string tok;
 		if (!from.get_token(tok)) {
 			from.restore_token_list();
-			return false;
+			return NULL;
 		}
 		if (tok.size() == 2) {
 			int ind = 0;

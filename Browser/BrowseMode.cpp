@@ -13,6 +13,8 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <sys/stat.h>
+#include <SDL/SDL.h>
 
 using std::string;
 
@@ -154,6 +156,12 @@ void BrowseMode::handle_event(SDL_Event const &event) {
 	}
 }
 
+inline bool exists (const std::string& name) 
+{
+	struct stat buffer;   
+	return (stat (name.c_str(), &buffer) == 0); 
+}
+
 void BrowseMode::draw() {
 const int FloorSize = 100;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -216,6 +224,10 @@ const int FloorSize = 100;
 		Character::State null;
 		null.clear();
 		static bool cant_load_skin = false; //Huge hack: only check for skin file once.
+		if(! exists("player.skin"))
+		{
+			cant_load_skin = true;
+		}
 		if (!skin.skin_buffer && !cant_load_skin) {
 			load("player.skin", current_pose.skeleton, skin);
 			if (!skin.skin_buffer) {
