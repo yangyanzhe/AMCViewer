@@ -27,9 +27,14 @@ void Mode::main_loop() {
 		while (SDL_PollEvent(&event)) {
 			handle_event(event);
 			//add alt-escape as a sort of force-quit:
+
 			if (event.type == SDL_KEYDOWN
 				&& event.key.keysym.sym == SDLK_ESCAPE
 				&& (event.key.keysym.mod & KMOD_ALT) ) {
+				quit_flag = true;
+			}
+			if (event.type == SDL_QUIT)
+			{
 				quit_flag = true;
 			}
 		}
