@@ -14,7 +14,7 @@
 #include <iostream>
 #include <fstream>
 #include <sys/stat.h>
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 using std::string;
 
