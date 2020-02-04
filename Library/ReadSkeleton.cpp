@@ -189,19 +189,9 @@ bool ReadAnimation(string filename, Skeleton const &on, vector< double > &positi
 		return false;
 #endif
 	}
-	if (filename.size() >= 4 && (filename.substr(filename.size()-4,4)==".amc")) {
-		string temp = filename;
-		temp[temp.size()-3] = 'b';
-		if (ReadAnimationBin(temp, on, positions)) {
-			cerr << "Using .bmc version of '" << filename << "'" << endl;
-			return true;
-		}
-	}
 	if (filename.size() >= 4 && (filename.substr(filename.size()-4,4)==".bmc")) {
 		return ReadAnimationBin(filename, on, positions);
 	}
-
-
 	map< string, int > bone_map;
 	for (unsigned int b = 0; b < on.bones.size(); ++b) {
 		bone_map.insert(make_pair(on.bones[b].name, b));

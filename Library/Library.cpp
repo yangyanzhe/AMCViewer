@@ -181,7 +181,6 @@ void init(string base_path, bool lazy) {
 		cout << "Lazy loading of motions enabled." << endl;
 	}
 
-
 	cout << "Computing signature" << endl;
 	long long sig = 0;
 	for (list< Motion >::iterator m = motions.begin(); m != motions.end(); ++m) {
@@ -460,7 +459,8 @@ bool Motion::load() {
 	if (loaded) {
 		cerr << "Double loading a motion." << endl;
 	}
-	if (!ReadAnimation(filename, *skeleton, data)) {
+    bool readAnimationStatus = ReadAnimation(filename, *skeleton, data);
+	if (!readAnimationStatus) {
 		cerr << "Error reading animation from " << filename << "." << endl;
 		return false;
 	}
