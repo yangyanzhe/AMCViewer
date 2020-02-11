@@ -29,7 +29,6 @@ bool Character::load(string const &filename, Library::Skeleton const *skeleton, 
 	id.w_dir = make_vector(0.0f, 0.0f, 0.0f, 1.0f);
 	vector< Skin::GLMatrix > inv_bind_mats(skeleton->bones.size(), id);
 	if (!getline(file, line) || line != "joints:") {
-		std::cout << filename << endl;
 		cerr << "Expecting line 'joints:', but got '" << line << "'" << endl;
 		return false;
 	}

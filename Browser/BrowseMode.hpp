@@ -5,6 +5,7 @@
 
 #include <Character/Character.hpp>
 #include <Character/Skin.hpp>
+#include <Character/Cloth.hpp>
 
 #include <vector>
 #include <deque>
@@ -37,6 +38,8 @@ public:
 	float play_speed;
 
 	Character::Skin skin;
+
+	Cloth cloth;
 };
 
 #endif //BROWSEMODE_HPP

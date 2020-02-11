@@ -9,13 +9,13 @@ SubInclude TOP Browser ;
 
 SubDir TOP ;
 
-LINKLIBS on dist/browser += $(SDLLINKLIBS) $(LIBRARYLINKLIBS) ;
+LINKLIBS on Dist/browser += $(SDLLINKLIBS) $(LIBRARYLINKLIBS) ;
 
 if $(OS) = NT {
 	Resource icons.res : icons/icons.rc ;
-	LinkResource dist/browser : icons.res ;
+	LinkResource Dist/browser : icons.res ;
 }
 
-File dist/gentium.txf : Graphics/fonts/gentium.txf ; 
+File Dist/gentium.txf : Graphics/fonts/gentium.txf ; 
 
-MainFromObjects dist/browser : $(BROWSER_OBJECTS) $(GRAPHICS_OBJECTS) $(GRAPHICS_SHADER_OBJECTS) $(CHARACTER_OBJECTS) $(LIBRARY_OBJECTS) ;
+MainFromObjects Dist/browser : $(BROWSER_OBJECTS) $(GRAPHICS_OBJECTS) $(GRAPHICS_SHADER_OBJECTS) $(CHARACTER_OBJECTS) $(LIBRARY_OBJECTS) ;

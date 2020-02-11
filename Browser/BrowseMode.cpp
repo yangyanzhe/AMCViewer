@@ -1,5 +1,6 @@
 #include "BrowseMode.hpp"
 
+#include <Character/Cloth.hpp>
 #include <Character/Draw.hpp>
 #include <Character/pose_utils.hpp>
 #include <Library/Library.hpp>
@@ -34,6 +35,8 @@ BrowseMode::BrowseMode() {
 	current_motion = 0;
 	time = 0.0f;
 	play_speed = 1.0f;
+
+	cloth.reset();
 }
 
 BrowseMode::~BrowseMode() {
@@ -57,6 +60,8 @@ void BrowseMode::update(float const elapsed_time) {
 		target += delta;
 		camera += delta;
 	}
+
+	cloth.simulation_step();
 }
 
 void BrowseMode::handle_event(SDL_Event const &event) {
@@ -219,28 +224,11 @@ const int FloorSize = 100;
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_LIGHTING);
 		}
-		//state can be used to translate and rotate the character
-		//to an arbitrary position, but we don't need that.
-		Character::State null;
-		null.clear();
-		static bool cant_load_skin = false; //Huge hack: only check for skin file once.
-		if(! exists("player.skin"))
-		{
-			cant_load_skin = true;
-		}
-		if (!skin.skin_buffer && !cant_load_skin) {
-			load("player.skin", current_pose.skeleton, skin);
-			if (!skin.skin_buffer) {
-				cerr << "Looks like you don't have a player.skin file, so you get cylinders instead." << endl;
-				cant_load_skin = true;
-			}
-		}
-		if (skin.skin_buffer && pass == 2) {
-			skin.calculate(current_pose, null);
-			skin.draw();
-		} else {
-			Character::draw(current_pose, null, pass == 2, pass != 1);
-		}
+
+		glPushMatrix();
+		cloth.draw();
+		glPopMatrix();
+
 		if (pass == 0) { //cleanup post-reflections.
 			glPopMatrix();
 			glDisable(GL_LIGHTING);
@@ -328,10 +316,7 @@ const int FloorSize = 100;
 		Graphics::FontRef gentium = Graphics::get_font("gentium.txf");
 		ostringstream info1, info2, info3, info4;
 		Library::Motion const &motion = Library::motion(current_motion);
-		info1 << "Motion: " << motion.filename;
-		info2 << "Skeleton: " << motion.skeleton->filename;
-		info3 << "Frame " << (unsigned int)(time / motion.skeleton->timestep) << " of " << motion.frames() << " (" << 1.0f / motion.skeleton->timestep << " fps)";
-		info4 << play_speed << "x speed";
+        info1 << play_speed << "x speed";
 		glEnable(GL_BLEND);
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
