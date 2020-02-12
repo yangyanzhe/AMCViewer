@@ -50,16 +50,16 @@ cd Dist
 ```
 
 ## Function to implement
-.
-├── Character
-|   ├── Cloth.cpp
-|       ├── Cloth::Cloth()
-|       ├── void Cloth::simulation_step()
-|       └── void Cloth::euler_step()
-|   ├── Particle.cpp
-|       └── void Particle::clearForce()
-|   ├── SpringForce.cpp
-|       └── void SpringForce::apply_force()
+.<br\>
+Character<br\>
+|   ├── Cloth.cpp<br\>
+|       ├── Cloth::Cloth()<br\>
+|       ├── void Cloth::simulation_step()<br\>
+|       └── void Cloth::euler_step()<br\>
+|   ├── Particle.cpp<br\>
+|       └── void Particle::clearForce()<br\>
+|   ├── SpringForce.cpp<br\>
+└──     └── void SpringForce::apply_force()<br\>
 
 ## Copyright
 All source is copyright Jim McCann unless otherwise noted. Feel free to use
