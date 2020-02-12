@@ -72,7 +72,7 @@ Contributing back bugfixes and improvements is polite and encouraged but not
 required.
 
 ## Contibutors
-This AMCViewer is originally written by Jim McCann (jmccann@cs.cmu.edu). Here's a list of people who may also have contributed: <br\>
-Roger Dannenberg (rbd@cs.cmu.edu) <br\>
-Se-Joon Chung (sejoonc@cs.cmu.edu) <br\>
+This AMCViewer is originally written by Jim McCann (jmccann@cs.cmu.edu). Here's a list of people who may also have contributed: \
+Roger Dannenberg (rbd@cs.cmu.edu) \
+Se-Joon Chung (sejoonc@cs.cmu.edu) \
 Yanzhe Yang (yanzhey@cs.cmu.edu)
