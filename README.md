@@ -50,6 +50,7 @@ cd Dist
 ```
 
 ## Function to implement
+```
 .
 +-- Character
 |   +-- Cloth.cpp
@@ -60,6 +61,7 @@ cd Dist
 |       +-- void Particle::clearForce()
 |   +-- SpringForce.cpp
 |       +-- void SpringForce::apply_force()
+```
 
 ## Copyright
 All source is copyright Jim McCann unless otherwise noted. Feel free to use
