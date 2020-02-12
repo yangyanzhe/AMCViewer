@@ -1,6 +1,6 @@
 ## Overview
 
-This source code provides a template to implement cloth simulation. Please refer to the [course website](http://graphics.cs.cmu.edu/nsp/course/15464-s20/www/assignments/miniProject2.htm) for project instructions.
+This source code provides a template to implement cloth simulation. Please refer to the [course website](http://graphics.cs.cmu.edu/nsp/course/15464-s20/www/assts.html) for project instructions.
 
 ## Controls
 
