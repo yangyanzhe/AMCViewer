@@ -125,6 +125,11 @@ void BrowseMode::handle_event(SDL_Event const &event) {
 			}
 		}
 	}
+	
+	//reset cloth simulation:
+	if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_r) {
+		cloth.reset();
+	}
 
 	//rotate view:
 	if (event.type == SDL_MOUSEMOTION && (event.motion.state & SDL_BUTTON(SDL_BUTTON_LEFT))) {
@@ -316,7 +321,12 @@ const int FloorSize = 100;
 		Graphics::FontRef gentium = Graphics::get_font("gentium.txf");
 		ostringstream info1, info2, info3, info4;
 		Library::Motion const &motion = Library::motion(current_motion);
-        info1 << play_speed << "x speed";
+		info1.precision(2);
+		info2.precision(2);
+        info1 << "Camera: " << camera.x << ", " << camera.y << ", " << camera.z;
+		info2 << "Target: " << target.x << ", " << target.y << ", " << target.z;
+		info3 << "Timestep " << cloth.dt << " s";
+
 		glEnable(GL_BLEND);
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

@@ -12,6 +12,9 @@ public:
 	Cloth();
 	~Cloth();
 
+public:
+	float dt = 0.1f;
+
 	void reset();
 	void draw();
 

@@ -5,8 +5,6 @@
 static std::vector<Particle*> pVector;
 static std::vector<Force*> fVector;
 
-static float dt;
-
 #define RAND (((rand()%2000)/1000.f)-1.f)
 #define DAMP 0.98f
 

@@ -1,18 +1,12 @@
 ## Overview
 
-This source code provides a complete example application for viewing amc/asf
-motion capture data.
+This source code provides a template to implement cloth simulation. Please refer to the [course website](http://graphics.cs.cmu.edu/nsp/course/15464-s20/www/assignments/miniProject2.htm) for project instructions.
 
 ## Controls
 
 The application reads data from a directory tree, expecting one asf file and
 possibly several amc files per directory. Once the motion has been loaded,
 a
-* PAGEUP/PAGEDOWN selects motion for playback. On the Mac, hold down the fn key and type the up/down arrow keys.
-
-* SPACE to toggle 0x (pause), 0.1x (slow), 1x (normal) speed
-
-* TAB to toggle camera tracking, 
 
 * ESC to quit
 
@@ -21,25 +15,7 @@ buttons are obtained using the normal button, the normal button while
 holding down the option key, and the normal button while holding down
 the "Apple" key.
 
-* 'd' will dump all the currently loaded motions to associated .global files. In such a file, each line contains a reference position of the character on the floor (position.x, position.z) and a reference yaw (position.yaw),
-followed by various joint positions in this reference coordinate frame.
-(There is a line for each frame of the motion.)
-
-Using the function defined in Vector/Misc.hpp, that means that, for example,
-the root position is given:
-
-```
-rotate_by_yaw(root_from_file, position.yaw) + make_vector(position.x, 0.0, position.z)
-```
-
-In other words, to go from the root.xyz in the file (root_from_file) to the
-global root position, you'd use the following formulas:
-
-```
-root.x = root_from_file.x * cos(position.yaw) + root_from_file.z * sin(position.yaw) + position.x
-root.y = root_from_file.y
-root.z = root_from_file.z * cos(position.yaw) + root_from_file.x * -sin(position.yaw) + position.z
-```
+* 'r' will reset cloth simulation
 
 ## Compiling
 
@@ -69,13 +45,21 @@ jam
 
 Step 3. Test
 ```
-cd dist
+cd Dist
 ./browser
 ```
 
-## Data
-- CMU Mocap http://mocap.cs.cmu.edu/.
-- Mixamo https://www.mixamo.com/#/
+## Function to implement
+.
+├── Character
+|   ├── Cloth.cpp
+|       ├── Cloth::Cloth()
+|       ├── void Cloth::simulation_step()
+|       └── void Cloth::euler_step()
+|   ├── Particle.cpp
+|       └── void Particle::clearForce()
+|   ├── SpringForce.cpp
+|       └── void SpringForce::apply_force()
 
 ## Copyright
 All source is copyright Jim McCann unless otherwise noted. Feel free to use
@@ -85,6 +69,8 @@ source in a readme or credits section, however).
 Contributing back bugfixes and improvements is polite and encouraged but not
 required.
 
-## Contact
-Written by:
-Jim McCann (jmccann@cs.cmu.edu) [http://tchow.com] <br/> Additional text by Roger Dannenberg (rbd@cs.cmu.edu) <br/>Feel free to email.
+## Contibutors
+This AMCViewer is originally written by Jim McCann (jmccann@cs.cmu.edu). Here's a list of people who may also have contributed: <br\>
+Roger Dannenberg (rbd@cs.cmu.edu) <br\>
+Se-Joon Chung (sejoonc@cs.cmu.edu) <br\>
+Yanzhe Yang (yanzhey@cs.cmu.edu)
